@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My College</title>  
+</head>
+<body>
+    <div class="header">
+        <a href="#default" class="logo">CompanyLogo</a>
+    </div>
+    <div class="navbar" style="margin: 0 100px;justify-content: normal;padding: 1px;min-height: 35px;">
+        <ul>
+            <li>@Html.ActionLink("Home", "index", new { controller = "home" }, new { @class = "nav-link scrollto active" })</li>
+            <li><a class="nav-link scrollto" href="#services">Courses</a></li>
+            <li>@Html.ActionLink("Faculty", "faculty", new { controller = "home" }, new { @class = "nav-link scrollto" })</li>
+            <li><a class="nav-link scrollto" href="#team">Documments</a></li>
+            <li>@Html.ActionLink("Gallery", "gallery", new { controller = "home" }, new { @class = "nav-link scrollto" })</li>
+            <li><a class="getstarted scrollto" href="#about">Activities</a></li>
+            <li>@Html.ActionLink("Contact", "contact", new { controller = "home" }, new { @class = "nav-link scrollto" })</li>
+            <li>@Html.ActionLink("About Us", "about", new { controller = "home" }, new { @class = "nav-link scrollto" })</li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="dropdown">
+                    <a href="#"><span>Content Managment</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li>@Html.ActionLink("Manage Faculty", "index", new { controller = "Faculty" }, new { @class = "nav-link scrollto" }) </li>
+                        <li><a href="#">Manage Gallery</a></li>
+                        <li><a href="#">Manager Slides</a></li>
+                    </ul>
+                </li>
+                <li>@Html.ActionLink("Logout", "logout", new { controller = "Login" }, new { @class = "nav-link scrollto" }) </li>
+            }
+            else
+            {
+                <li class="dropdown">
+                    <a href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li>@Html.ActionLink("Admin Login", "login", new { controller = "Login" }, new { @class = "nav-link scrollto" }) </li>
+                        <li><a href="#">Student Login</a></li>
+                        <li><a href="#">Teacher Login</a></li>
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+    <div>
+        <div class="content">
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @*<nav class="social">
+            <ul>
+                <li><a href="https://twitter.com/">Twitter <i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://facebook.com/">Facebook <i class="fa fa-facebook"></i></a></li>
+                <li><a href="http://gmail.com/">gmail <i class="fa fa-gmail"></i></a></li>
+            </ul>
+        </nav>*@
+    <div class="footer">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My College</p>
+        </footer>
+    </div>
+
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>

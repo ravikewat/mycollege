@@ -1,0 +1,36 @@
+﻿@using MyCollege.Helpers;
+@using MyCollege.Models;
+@using MyCollege.Common;
+
+@model List<Faculty>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>@ViewBag.Message</h2>
+        </div>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                var filename = item.ImageName;
+                var filePath = Path.Combine(MyCollegeConstants.facultyImgPath,filename);
+
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <a href="@filePath" class="thumbnail">
+                        <p><span>Name - @item.Name</span></p>
+                        <p><span>Department - @item.Department</span></p>
+                        @ImageTagHelper.Img(filePath, "title", "img-thumbnail", "width:200px;height:200px;")
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            <p>
+                <h2>No data available !</h2>
+            </p>
+        }
+    </div>
+</div>
+
