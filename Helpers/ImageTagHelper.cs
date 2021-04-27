@@ -14,13 +14,15 @@ namespace MyCollege.Helpers
             return new MvcHtmlString(string.Format("<img src='{0}' alt='{1}' class='{2}' style='{3}' >", src,alt, @class, style));
         }
 
-        public static IHtmlString Image(this HtmlHelper htmlHelper, string src, string alt, string @class, string style)
+        public static IHtmlString Image(this HtmlHelper htmlHelper, string src, string alt, string @class, string style, string elmId, string functionStr)
         {
             TagBuilder tag = new TagBuilder("img");
             tag.Attributes.Add("src", src);
+            tag.Attributes.Add("id", elmId);
             tag.Attributes.Add("alt", alt);
             tag.Attributes.Add("class", @class);
             tag.Attributes.Add("style", style);
+            tag.Attributes.Add("onclick", functionStr);
             return new MvcHtmlString(tag.ToString());
             //return new MvcHtmlString(string.Format("<img src='{0}' alt='{1}' class='{2}' style='{3}' >", src, alt, @class, style));
         }

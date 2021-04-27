@@ -23,8 +23,12 @@ namespace MyCollege
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css1").Include(
                       "~/Content/site.css"));
+
+            BundleTable.EnableOptimizations = true;
 
         }
     }
