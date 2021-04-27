@@ -38,11 +38,48 @@ namespace MyCollege.Controllers
             return View(items);
         }
 
-        [HttpPost]
-        public ActionResult SaveImage(HttpPostedFileBase ImageData, string imageFileName)
+        public ActionResult ManageNotification(string type)
         {
-            ImageData.SaveAs(Path.Combine(Server.MapPath(MyCollegeConstants.facultyImgPath), imageFileName));
-            return RedirectToAction("index", "faculty", null);
+            List<NotificationMessage> items = null;
+            string filepath = MyCollegeConstants.notificationJsonPath;
+            if (!string.IsNullOrEmpty(type) && type.Equals(MyCollegeConstants.DownloadType))
+                filepath = MyCollegeConstants.downloadsJsonPath;
+            ViewBag.Message = "";
+            ViewBag.NotificationType = type;
+            using (StreamReader r = new StreamReader(Server.MapPath(filepath)))
+            {
+                string json = r.ReadToEnd();
+                ViewBag.strJSON = json;
+                items = JsonConvert.DeserializeObject<List<NotificationMessage>>(json);
+            }
+            return View(items);
+        }
+
+        [HttpPost]
+        public ActionResult ManageNotification(string JSONString, string type)
+        {
+            List<NotificationMessage> items = null;
+            string filepath = MyCollegeConstants.notificationJsonPath;
+            if (type.Equals(MyCollegeConstants.DownloadType))
+                filepath = MyCollegeConstants.downloadsJsonPath;
+            string path = Server.MapPath(filepath);
+            System.IO.File.WriteAllText(path, JSONString);
+            ViewBag.Message = "Notifications changes Saved !";
+            ViewBag.strJSON = JSONString;
+            items = JsonConvert.DeserializeObject<List<NotificationMessage>>(JSONString);
+            return View(items);
+        }
+
+        [HttpPost]
+        public ActionResult SaveImage(HttpPostedFileBase ImageData, string imageFileName, string type)
+        {
+            string filepath = MyCollegeConstants.facultyImgPath;
+            if (type.Equals(MyCollegeConstants.DownloadType))
+                filepath = MyCollegeConstants.downloadImgPath;
+            else if (type.Equals(MyCollegeConstants.NotificationType))
+                filepath = MyCollegeConstants.notificationImgPath;
+            ImageData.SaveAs(Path.Combine(Server.MapPath(filepath), imageFileName));
+            return View();
         }
 
     }

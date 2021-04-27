@@ -1,0 +1,103 @@
+﻿@using MyCollege.Models;
+@model  List<NotificationMessage>
+
+@using (Html.BeginForm("ManageNotification", "faculty", new { type=ViewBag.NotificationType }, FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <h3><u>@ViewBag.NotificationType Details</u></h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>File Name</th>
+                        <th>Upload Content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (NotificationMessage item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Description
+                                </td>
+                                <td>
+                                    @item.FileName
+                                </td>
+                              
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="ImageUpload('@item.FileName');">
+                                        Upload Content
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <p>"No Data Available"</p>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <h3><u>@ViewBag.NotificationType JSON Database</u></h3>
+            <p class="text-info">
+                Note : please edit the JSON file content by following below format, to add/remove details
+            </p>
+            <div class="bi-textarea">
+                @Html.TextArea("JSONString", (string)ViewBag.strJSON.ToString(), new { @class = "form-control", style = "height:300px;" })
+            </div>
+            <br />
+            <input type="submit" class="btn btn-primary" value="Save" />
+            @if (!string.IsNullOrEmpty(ViewBag.Message))
+            {
+                <p class="text-success">@ViewBag.Message</p>
+            }
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("SaveImage", "faculty", new { type = ViewBag.NotificationType }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Upload Image</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    File Name -
+                    @Html.TextBox("imageFileName", "", new { @class = "form-control" })
+                    <br />
+                    <input type="file" name="ImageData" id="ImageData" />
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    function ImageUpload(fileName) {
+        $("#imageFileName").val(fileName);
+    }
+</script>
+
+
+

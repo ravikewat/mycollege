@@ -1,4 +1,6 @@
-﻿@model List<string>
+﻿@using MyCollege.Common;
+@using MyCollege.Models;
+@model List<NotificationMessage>
 
 @helper ImgInlineHelper(string src, string alt)
 {
@@ -7,32 +9,32 @@
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    <ol class="carousel-indicators">
+    <!--<ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+    </ol>-->
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" style="height:350px;">
 
         @for (int i = 0; i < Model.Count; i++)
         {
-            var filename = "/assets/img/slide/"+Model[i] + ".jpg";
+            var filename = MyCollegeConstants.slideImgPath + Model[i].FileName ;
             if (i == 0)
             {
                 <div class="item active">
-                    @ImgInlineHelper(filename, Model[i])
+                    @ImgInlineHelper(filename, Model[i].Description)
                 </div>
             }
             else
             {
                 <div class="item">
-                    @ImgInlineHelper(filename, Model[i])
+                    @ImgInlineHelper(filename, Model[i].Description)
                 </div>
             }
         }
-       
+
     </div>
 
     <!-- Left and right controls -->
@@ -46,96 +48,53 @@
     </a>
 </div>
 
+<div class="container" style="margin-top:10px;">
+    <div class="row col-lg-12">
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4>Prinicipal's Corner</h4></div>
+                <div class="panel-body">
+                    <p>
+                        <span>
+                            TESTE SATFD AFSDF AA AF AF AFSD asf FDA  AF FASTESTE SATFD AFSDF AA AF AF AFSD asf FDA  AF FASTESTE SATFD AFSDF AA AF AF AFSD asf FDA  AF FASTESTE SATFD AFSDF AA AF AF AFSD asf FDA  AF FASTESTE SATFD AFSDF AA AF AF AFSD asf FDA  AF FAS
+                        </span>
+                        <img class="img-thumbnail" style="height:150px; width:150px;" src="~/assets/img/team/team-1.jpg" />
 
-
-<!-- First Grid: Logo & About -->
-<div class="w3-row">
-    <div class="w3-half w3-light-grey w3-center" style="height:600px">
-        <div class="w3-padding-64">
-            <h2>L B S College Harda</h2>
-            <p>Welcome to our College.</p>
-        </div>
-        <div class="w3-row">
-            <div class="w3-half">
-                <img src="img_coffee.jpg" style="width:100%">
-            </div>
-            <div class="w3-half">
-                <img src="img_workbench.jpg" style="width:100%">
-            </div>
-        </div>
-        <div class="w3-row">
-            <div class="w3-half">
-                <img src="img_workbench.jpg" style="width:100%">
-            </div>
-            <div class="w3-half">
-                <img src="img_coffee.jpg" style="width:100%">
+                    </p>
+                    <span class="text-info">Mr. Principal</span>
+                </div>
             </div>
         </div>
-        <div class="w3-row">
-            <div class="w3-half">
-                <img src="img_sound.jpg" style="width:100%">
-            </div>
-            <div class="w3-half">
-                <img src="img_workbench.jpg" style="width:100%">
-            </div>
-        </div><br>
-        <p>Just call me awesome.</p>
-    </div>
-    <div class="w3-half w3-blue-grey w3-container" style="height:600px">
-        <div class="w3-padding-64 w3-center">
-            <h1>Notice Board</h1>
-            <img src="img_avatar3.png" class="w3-margin w3-circle" alt="Person" style="width:50%">
-            <div class="w3-left-align w3-padding-large">
-                <!-- Codes by HTMLcodes.ws -->
-                <marquee behavior="scroll" direction="up" onmouseover="this.stop();" onmouseout="this.start();">
-                    Go on... STOP ME!
-                    Welcome to our College.
-                    Welcome to our College.
 
-                    Welcome to our College.
-                    Welcome to our College.
-                    Welcome to our College.
-                    Welcome to our College.
-                </marquee>
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4>Directors's Message</h4></div>
+                <div class="panel-body">
+                    <p>
+                        <span>
+                            TESTE SATFD AFSDF AA AF AF AFSD asf FDA  AF FASTESTE SATFD AFSDF AA AF AF AFSD asf FDA  AF FASTESTE SATFD AFSDF AA AF AF AFSD asf FDA  AF FASTESTE SATFD AFSDF AA AF AF AFSD asf FDA  AF FASTESTE SATFD AFSDF AA AF AF AFSD asf FDA  AF FAS
+                        </span>
+                        <img class="img-thumbnail" style="height:150px; width:150px;" src="~/assets/img/team/team-2.jpg" />
 
+                    </p>
+                    <span class="text-info">Mrs. Director</span>
+                </div>
             </div>
         </div>
     </div>
+    <div class="row col-lg-12">
+        <div class="col-lg-6">
+            @{Html.RenderAction("Notifications", "Home", new { notificationType = MyCollegeConstants.NotificationType });}
+        </div>
+
+        <div class="col-lg-6">
+            @{Html.RenderAction("Notifications", "Home", new { notificationType = MyCollegeConstants.DownloadType });}
+        </div>
+    </div>
+
 </div>
 
-<!-- Second Grid: Swing By & Contact -->
-<div class="w3-row">
-    <div class="w3-half w3-dark-grey w3-container w3-center" style="height:600px">
-        <div class="w3-padding-64">
-            <h1>Courses Offered</h1>
-        </div>
-        <div class="w3-padding-64">
-            <p>B.Sc.Computer Science</p>
-            <p>B Com</p>
-            <p>BCA</p>
-            <p>PGDCA</p>
-        </div>
-    </div>
-    <div class="w3-half w3-teal w3-container" style="height:600px">
-        <div class="w3-padding-64 w3-padding-large w3-center">
-            <h1>College Tour</h1>
-            <p class="w3-opacity">GET IN TOUCH</p>
-            <form class="w3-container w3-card w3-padding-32 w3-white">
-                <div class="w3-section">
-                    <label>Name</label>
-                    <input class="w3-input" style="width:100%;" type="text" required>
-                </div>
-                <div class="w3-section">
-                    <label>Name</label>
-                    <input class="w3-input" style="width:100%;" type="text" required>
-                </div>
-                <div class="w3-section">
-                    <label>Subject</label>
-                    <input class="w3-input" style="width:100%;" type="text" required>
-                </div>
-                <button type="button" class="w3-btn">Send</button>
-            </form>
-        </div>
-    </div>
-</div>
+
+
+
 

@@ -1,0 +1,31 @@
+﻿@using MyCollege.Common;
+@using MyCollege.Models
+@model List<NotificationMessage>
+<div class="panel panel-primary">
+    <div class="panel-heading"><h4>@ViewBag.NotificationType</h4></div>
+    <div class="panel-body">
+        <marquee behavior="scroll" direction="down" scrollamount="1" onmouseover="this.stop();" onmouseout="this.start();">
+            <ul>
+                @foreach (NotificationMessage item in Model)
+                {
+
+                    string filepath = MyCollegeConstants.notificationImgPath;
+                    if (!string.IsNullOrEmpty(@ViewBag.NotificationType) && @ViewBag.NotificationType.Equals(MyCollegeConstants.DownloadType))
+                    {
+                        filepath = MyCollegeConstants.downloadImgPath;
+                    }
+
+                    var filePath = Path.Combine(filepath, item.FileName);
+                    <li>
+                        <a href="@filePath" target="_blank">@item.Description</a>
+                    </li>
+                }
+            </ul>
+        </marquee>
+    </div>
+    <div class="panel-footer">
+        <span class="text-muted">
+            @Html.ActionLink("View all", "", new { @class="form-control" })
+        </span>
+    </div>
+</div>

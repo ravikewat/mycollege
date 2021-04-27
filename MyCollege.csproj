@@ -130,11 +130,11 @@
     <Compile Include="Helpers\ImageTagHelper.cs" />
     <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\LoginUser.cs" />
+    <Compile Include="Models\NotificationMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\EmailExistsValidation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Faculties.xml" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\img\about.jpg" />
     <Content Include="assets\img\apple-touch-icon.png" />
@@ -147,6 +147,7 @@
     <Content Include="assets\img\clients\client-7.png" />
     <Content Include="assets\img\clients\client-8.png" />
     <Content Include="assets\img\favicon.png" />
+    <Content Include="assets\img\header.jpg" />
     <Content Include="assets\img\portfolio\portfolio-1.jpg" />
     <Content Include="assets\img\portfolio\portfolio-2.jpg" />
     <Content Include="assets\img\portfolio\portfolio-3.jpg" />
@@ -247,6 +248,9 @@
     <Content Include="assets\vendor\boxicons\fonts\boxicons.woff" />
     <Content Include="assets\vendor\boxicons\fonts\boxicons.woff2" />
     <Content Include="App_Data\Faculties.json" />
+    <Content Include="App_Data\Notifications.json" />
+    <Content Include="App_Data\Slides.json" />
+    <Content Include="App_Data\Downloads.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -276,6 +280,8 @@
     <Content Include="Views\Home\Faculty.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Faculty\Index.cshtml" />
+    <Content Include="Views\Shared\_NotificationView.cshtml" />
+    <Content Include="Views\Faculty\ManageNotification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\img\Faculties\" />

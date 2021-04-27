@@ -1,14 +1,9 @@
 ﻿@using MyCollege.Models;
 @model  List<Faculty>
-@{
-    ViewBag.Title = "Manage Faculties Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 @using (Html.BeginForm("Index", "faculty", FormMethod.Post))
 {
     <div class="row">
-
         <div class="col-lg-6">
             <h2><u>Faculties Details</u></h2>
             <table class="table table-hover">
@@ -16,8 +11,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Department</th>
-                        <th>Image Name</th>
-                        <th>Upload Image</th>
+                        <th>File Name</th>
+                        <th>Upload Content</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +32,7 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="ImageUpload('@item.ImageName');">
-                                        Upload Image
+                                        Upload Content
                                     </button>
                                 </td>
                             </tr>

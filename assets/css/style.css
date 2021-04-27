@@ -11,7 +11,6 @@ body {
     overflow: hidden;
     background-color: #f1f1f1;
     padding: 20px 10px;
-    margin: 0 100px;
 }
 
     .header a {
@@ -46,42 +45,42 @@ body {
 
 
 
-    .header-right {
-        float: none;
-    }
+.header-right {
+    float: none;
+}
 
 .navbar {
     background-color: #333;
-    margin: 0 100px;
     justify-content: normal;
-    padding: 1px;
     min-height: 35px;
+    margin-bottom:0px;
 }
 
-        .navbar ul {
-            padding: 0;
-            display: flex;
-            list-style: none;
-            align-items: center;
+    .navbar ul {
+        padding: 0;
+        display: flex;
+        list-style: none;
+        align-items: center;
+    }
+
+    .navbar li {
+        position: relative;
+    }
+
+    .navbar a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 3px 16px;
+        text-decoration: none;
+    }
+
+        .navbar a:hover {
+            background: #ddd;
+            color: black;
         }
 
-        .navbar li {
-            position: relative;
-        }
-
-        .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 3px 16px;
-            text-decoration: none;
-        }
-
-            .navbar a:hover {
-                background: #ddd;
-                color: black;
-            }
     .navbar .dropdown ul {
         display: block;
         position: absolute;
@@ -97,49 +96,49 @@ body {
         transition: 0.3s;
     }
 
-            .navbar .dropdown ul li {
-                min-width: 200px;
+        .navbar .dropdown ul li {
+            min-width: 200px;
+        }
+
+        .navbar .dropdown ul a {
+            padding: 10px 20px;
+            text-transform: none;
+        }
+
+            .navbar .dropdown ul a i {
+                font-size: 12px;
             }
 
-            .navbar .dropdown ul a {
-                padding: 10px 20px;
-                text-transform: none;
+            .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
+                color: #5cb874;
             }
 
-                .navbar .dropdown ul a i {
-                    font-size: 12px;
-                }
-
-                .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-                    color: #5cb874;
-                }
-
-        .navbar .dropdown:hover > ul {
-            opacity: 1;
-            top: 100%;
-            visibility: visible;
-        }
-
-        .navbar .dropdown .dropdown ul {
-            top: 0;
-            left: calc(100% - 30px);
-            visibility: hidden;
-        }
-
-        .navbar .dropdown .dropdown:hover > ul {
-            opacity: 1;
-            top: 0;
-            left: 100%;
-            visibility: visible;
-        }
-
-
-
-    .main {
-        padding: 16px;
-        margin-top: 60px;
-        height: 1500px; /* Used in this example to enable scrolling */
+    .navbar .dropdown:hover > ul {
+        opacity: 1;
+        top: 100%;
+        visibility: visible;
     }
+
+    .navbar .dropdown .dropdown ul {
+        top: 0;
+        left: calc(100% - 30px);
+        visibility: hidden;
+    }
+
+    .navbar .dropdown .dropdown:hover > ul {
+        opacity: 1;
+        top: 0;
+        left: 100%;
+        visibility: visible;
+    }
+
+
+
+.main {
+    padding: 16px;
+    margin-top: 60px;
+    height: 1500px; /* Used in this example to enable scrolling */
+}
 
 /* The side navigation menu */
 .sidebar {
@@ -188,83 +187,6 @@ div.content {
     text-align: center;
 }
 
-.social {
-    position: fixed;
-    top: 200px;
-}
-
-    .social ul {
-        padding: 0px;
-        -webkit-transform: translate(-270px, 0);
-        -moz-transform: translate(-270px, 0);
-        -ms-transform: translate(-270px, 0);
-        -o-transform: translate(-270px, 0);
-        transform: translate(-270px, 0);
-    }
-
-        .social ul li {
-            display: block;
-            margin: 5px;
-            background: rgba(0, 0, 0, 0.36);
-            width: 300px;
-            text-align: right;
-            padding: 10px;
-            -webkit-border-radius: 0 30px 30px 0;
-            -moz-border-radius: 0 30px 30px 0;
-            border-radius: 0 30px 30px 0;
-            -webkit-transition: all 1s;
-            -moz-transition: all 1s;
-            -ms-transition: all 1s;
-            -o-transition: all 1s;
-            transition: all 1s;
-        }
-
-            .social ul li:hover {
-                -webkit-transform: translate(110px, 0);
-                -moz-transform: translate(110px, 0);
-                -ms-transform: translate(110px, 0);
-                -o-transform: translate(110px, 0);
-                transform: translate(110px, 0);
-                background: rgba(255, 255, 255, 0.4);
-            }
-
-                .social ul li:hover a {
-                    color: #000;
-                }
-
-                .social ul li:hover i {
-                    color: #fff;
-                    background: red;
-                    -webkit-transform: rotate(360deg);
-                    -moz-transform: rotate(360deg);
-                    -ms-transform: rotate(360deg);
-                    -o-transform: rotate(360deg);
-                    transform: rotate(360deg);
-                    -webkit-transition: all 1s;
-                    -moz-transition: all 1s;
-                    -ms-transition: all 1s;
-                    -o-transition: all 1s;
-                    transition: all 1s;
-                }
-
-            .social ul li i {
-                margin-left: 10px;
-                color: #000;
-                background: #fff;
-                padding: 10px;
-                -webkit-border-radius: 50%;
-                -moz-border-radius: 50%;
-                border-radius: 50%;
-                width: 20px;
-                height: 20px;
-                font-size: 20px;
-                background: #ffffff;
-                -webkit-transform: rotate(0deg);
-                -moz-transform: rotate(0deg);
-                -ms-transform: rotate(0deg);
-                -o-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
 
 .form-signin {
     width: 100%;

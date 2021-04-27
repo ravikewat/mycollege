@@ -8,21 +8,46 @@ using System.Web.Mvc;
 
 namespace MyCollege.Controllers
 {
+    
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
             ViewBag.Message = "Home";
-            var files = Directory.EnumerateFiles(Server.MapPath(@"~/assets/img/slide"), "*.*", SearchOption.AllDirectories);
-
-
-            List<string> imageFiles = new List<string>();
-            foreach (string filename in files)
+            List<NotificationMessage> items = null;
+            using (StreamReader r = new StreamReader(Server.MapPath(MyCollegeConstants.slidesJsonPath)))
             {
-                if (Regex.IsMatch(filename, @".jpg|.png|.gif$"))
-                    imageFiles.Add(Path.GetFileNameWithoutExtension(filename));
+                string json = r.ReadToEnd();
+                items = JsonConvert.DeserializeObject<List<NotificationMessage>>(json);
             }
-            return View(imageFiles);
+            return View(items);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Notifications(string notificationType)
+        {
+            string jsonFilePath = string.Empty;
+            switch (notificationType)
+            {
+                case MyCollegeConstants.NotificationType:
+                    jsonFilePath = MyCollegeConstants.notificationJsonPath;
+                    ViewBag.NotificationType = MyCollegeConstants.NotificationType;
+                    break;
+                case MyCollegeConstants.DownloadType:
+                    jsonFilePath = MyCollegeConstants.downloadsJsonPath;
+                    ViewBag.NotificationType = MyCollegeConstants.DownloadType;
+                    break;
+                default:
+                    break;
+            }            
+
+            List<NotificationMessage> items = null;
+            using (StreamReader r = new StreamReader(Server.MapPath(jsonFilePath)))
+            {
+                string json = r.ReadToEnd();
+                items = JsonConvert.DeserializeObject<List<NotificationMessage>>(json);
+            }
+            return PartialView("_NotificationView", items);
         }
 
         public ActionResult About()
